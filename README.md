@@ -1,95 +1,84 @@
-#  Java Polymorphism
+# Pacific & R&D Car Projects
 
-### Proje Kurulumu
+Bu proje, Java programlama dilinde temel Nesne Yönelimli Programlama (OOP) konseptlerini (Kalıtım, Polymorphism, Encapsulation, Method Overriding) sergilemek üzere tasarlanmış iki ayrı araç geliştirme senaryosunu içermektedir: **Pacific Car Company** ve **Car R&D Company**.
 
-Projeyi öncelikle forklayın ve clone edin.
-Daha sonra projeyi IntellijIDEA kullanarak açınız. README.md dosyasını dikkatli bir şekilde okuyarak istenenleri yapmaya çalışın.
-Proje sayımız ilerledikçe proje yönetimimizi kolaylaştırmak adına projelerimizi belli klasör kalıplarında saklamak işimizi kolaylaştırmak adına iyi bir alışkanlıktır.
-Örnek bir Lokasyon: Workintech/Sprint_1/Etud.
+## Proje Amacı
 
-### Intro
+Temel amaç, Java'da sınıf hiyerarşilerini oluşturmak, erişim belirteçlerini (`private`, `protected`, `public`) doğru kullanmak ve `toString()`, `equals()` gibi Object sınıfı metotlarını başarıyla geçersiz kılmaktır.
 
-Polymorphism çok biçimlilik demektir. Java'nın ve Nesne Tabanlı Programlama'nın en önemli konularından biridir.
-Java Polymorphism'in üzerine kurulmuş bir programlama dilidir. Bundan sonra göreceğimiz tüm konularda karşımıza çıkıcak ve Java'nın bel kemiğini oluşturacak.
-Polymorphism soyut bir kavram olduğu için tam olarak nasıl çalıştığını anlamak biraz zaman alabilir. Kısaca Runtime anında objelerin davranış şekillerini değiştirme olarak özetleyebiliriz.
+## Proje Yapısı
+
+Proje, iki ana Java paketi altında organize edilmiştir:
+
+src/
+├── org/example/
+    ├── arge/
+    │   ├── CarSkeleton.java (Ana Sınıf)
+    │   ├── GasPoweredCar.java
+    │   ├── ElectricCar.java
+    │   └── HybridCar.java
+    └── company/
+        ├── Car.java (Ana Sınıf)
+        ├── Mitsubishi.java
+        ├── Holden.java
+        └── Ford.java
+└── Main.java (Test ve Uygulama Sınıfı)
 
 
-### Hedeflerimiz:
+## Teknolojiler ve Konseptler
 
- ### Pacific Car Company
+* **Dil:** Java
+* **Kullanılan Konseptler:** Kalıtım, Polymorphism, Method Overriding, Encapsulation, `toString()`, `equals()`.
 
- * Bugün ki projemizde toplamda 4 tane sınıf oluşturman istenmektedir.
- * İlk sınıfımız org.example.company paketi altında ```Car``` isimli sınıfımız olmalı.
- * ```Car``` sınıfı diğer oluşturacağımız 3 sınıf olan ```Mitsubishi```, ```Holden```, ```Ford``` sınıflarının parent sınıf olacak.
-   * ```Car``` sınıfı 4 adet ```instance variable``` içermeli.
-        
-        engine => boolean
-   
-        cylinders => int
-   
-        name => String
-   
-        wheels => int
-   
-   * Bu 4 değişkende ```private``` olarak tanımlanmalı
-   * Car sınıfı için tek bir ```constructor``` tanımlanmalı. Constructor sadece 2 değeri dışarıdan almalı cylinders ve name değerlerini. İlgili 3 arabanın da motoru bulunduğu için ve 4 tekeri olduğu için contructor metodu içerisinde bu değerler default olarak set edilmeli. Dışarıdan parametre olarak alınmaya ihtiyaç duyulmamalı.
-   * name ve cylinders parametreleri için getter metodlarını tanımlayınız.
-   * Car sınıfı için toString ve equals methodlarını da ```Override``` etmelisin. Equals metodu için name ve cylinders alanları birlikte eşitliği kontrol etmeli.
-   * Car sınıfı içerisinde aşağıdaki 3 metod tanımlanmalı
-   * ```startEngine()``` hiçbir parametre almayacak ```the car's engine is starting``` mesajını dönmeli.
-   * ```accelerate()```  hiçbir parametre almayacak ```the car is accelerating``` mesajını dönmeli.
-   * ```brake()``` hiçbir parametre almayacak ```the car is braking``` mesajını dönmeli.
-   * Ayrıca bu 3 metodunda içerisinde ```getClass().getSimpleName()``` değeri loglanmalı.
-   * ```Mitsubishi```, ```Holden```, ```Ford``` sınıfları org.example.company paketi altında olmalı ve ```Car``` sınıfının alt sınıflarıdır ve bu 3 metoduda ```Override``` etmeliler.
+---
 
-Aşağıdaki gibi bir input değeri için output kısmında her araç türünün kendi override edilmiş metodunun çağırıldığından emin olmalısın.
+## 1. Pacific Car Company Projesi (Paket: `org.example.company`)
 
- ### Car R&D Company
+Bu bölüm, temel bir araç (`Car`) sınıfı tanımlar ve üç farklı araç markası (`Mitsubishi`, `Holden`, `Ford`) bu sınıftan kalıtım alır.
 
- * 'Car R&D Company' 3 farklı arabalarının dizaynını yapabilmek için yardıma ihtiyaç duyuyorlar. Bu konuda sana güvenleri tam. Problemlerini çözebilmen için seni işe aldılar.
- * org.example.arge paketi altında ```CarSkeleton``` isminde bir sınıf tanımlayınız. ```name ve description``` alanlarını almalı. Bu alanlar için getter'lar olmalı.
- * CarSkeleton sınıfının 2 tane constructor değeri olmalı biri hiç parametre almayan diğeri name ve description değerlerini alan.
- * ```CarSkeleton``` sınıfının 3 adet metodu olmalı. ```startEngine(), drive(), runEngine()``` startEngine ve drive metodları public olarak tanımlanmalı. runEngine protected olarak tanımlanmalı.
- * runEngine metodu drive metodunun içerisinden çağırılmalı.
- * ```CarSkeleton``` sınıfının 3 tane de ```subclass``` değeri tanımlanmalı. ```GasPoweredCar```, ```ElectricCar```, ```HybridCar```
- * ```GasPoweredCar``` iki sınıf değişkeni içerir. ```avgKmPerLitre: double ve cylinders: int``` bu iki değişkeni de set edebileceği, 4 parametreli bir constructorı olmalıdır. Bu alanlar için getter'lar da olmalıdır.
- * ```ElectricCar``` iki sınıf değişkeni içerir. ```avgKmPerCharge: double ve batterySize: int``` bu iki değişkeni de set edebileceği, 4 parametreli bir constructorı olmalıdır. Bu alanlar için getter'lar da olmalıdır.
- * ```HybridCar``` üç sınıf değişkeni içerir. ```avgKmPerLitre: double, batterySize: int, cylinders: int``` bu üç değişkeni de set edebileceği, 4 parametreli bir constructorı olmalıdır. Bu alanlar için getter'lar da olmalıdır.
- * Bu üç farklı sınıfta ```startEngine ve drive``` metodlarını engine(motor) tiplerine göre farklı şekillerde çağırırlar.
- * Tüm dizaynı yapmak senin görevin. Alt sınıflar ```CarSkeleton``` içerisindeki bazı metodları ya da hepsini Override etmeli mi ?
- * Var olan Main sınıfındaki main metodunun içini temizleyip, tüm sınıfların objelerinden polymorphism kurallarına uyacak şekilde birer instance oluşturunuz.
- * Her instance ile sınıfın davranışını test edin. Bir tane metodunuz sınıfın tipini ekrana basmalı.
+### `Car` Sınıfı Detayları:
 
-### INPUT
+| Özellik | Tip | Erişim | Açıklama |
+| :--- | :--- | :--- | :--- |
+| `engine` | `boolean` | `private` | Motorun varlığı (Varsayılan: `true`). |
+| `cylinders` | `int` | `private` | Silindir sayısı. |
+| `name` | `String` | `private` | Araç adı. |
+| `wheels` | `int` | `private` | Tekerlek sayısı (Varsayılan: `4`). |
 
-Car car = new Car(8, "Base car");
+### Metotlar ve Polymorphism:
 
-System.out.println(car.startEngine());
+`Car` sınıfında tanımlanan `startEngine()`, `accelerate()` ve `brake()` metotları, alt sınıflar tarafından **Override** edilmiştir. Tüm bu metotlar, çağrıldığında `getClass().getSimpleName()` değerini konsola loglayarak hangi sınıfın metodunun çalıştığını açıkça gösterir.
 
-System.out.println(car.accelerate());
+---
 
-System.out.println(car.brake());
+## 2. Car R&D Company Projesi (Paket: `org.example.arge`)
 
-Car mitsubishi = new Mitsubishi(6, "Outlander VRX 4WD");
+Bu bölüm, farklı motor tiplerine sahip araçların iskeletini (`CarSkeleton`) tasarlar ve Polymorphism kullanımını test eder.
 
-System.out.println(mitsubishi.startEngine());
+### `CarSkeleton` Sınıfı Metotları:
 
-System.out.println(mitsubishi.accelerate());
+| Metot | Erişim | Açıklama |
+| :--- | :--- | :--- |
+| `startEngine()` | `public` | Motor çalıştırma. Alt sınıflar kendi motor tiplerine göre Override eder. **Sınıfın tipini ekrana basar.** |
+| `runEngine()` | `protected` | Motorun temel çalışma mantığı. Sadece `drive()` metodu içerisinden çağrılır. |
+| `drive()` | `public` | Sürüşü başlatır ve içeride `runEngine()` metodunu çağırır. Alt sınıflar Override eder. |
 
-System.out.println(mitsubishi.brake());
+### Alt Sınıflar ve Özellikleri:
 
-Car ford = new Ford(6, "Ford Falcon");
+| Sınıf | Temel Özellikler | Motor Tipi |
+| :--- | :--- | :--- |
+| **`GasPoweredCar`** | `avgKmPerLitre`, `cylinders` | Benzinli |
+| **`ElectricCar`** | `avgKmPerCharge`, `batterySize` | Elektrikli |
+| **`HybridCar`** | `avgKmPerLitre`, `batterySize`, `cylinders` | Hibrit |
 
-System.out.println(ford.startEngine());
+Tüm alt sınıflar, kendi motor tiplerine özel mesajlar döndürmek için `startEngine()` ve `drive()` metotlarını geçersiz kılarlar.
 
-System.out.println(ford.accelerate());
+---
 
-System.out.println(ford.brake());
+## Çalıştırma ve Test
 
-Car holden = new Holden(6, "Holden Commodore");
+Projenin `Main.java` sınıfı, iki bölümdeki gereksinimleri de yerine getiren test kodlarını içerir. Polymorphism kurallarına uygun olarak oluşturulan nesnelerle metotlar çağrılır ve konsol çıktısı ile beklenen davranışlar doğrulanır.
 
-System.out.println(holden.startEngine());
+### Test Çıktısından Örnekler:
 
-System.out.println(holden.accelerate());
-
-System.out.println(holden.brake());
+Testler sırasında elde edilen çıktılar, alt sınıflara atanan üst sınıf referanslarının (örneğin, `Car mitsubishi = new Mitsubishi(...)`) doğru bir şekilde alt sınıfın Override edilmiş metodunu çağırdığını göstermektedir. Ayrıca, `Car R&D Company` testlerinde istenen sınıf tipi loglaması da başarıyla gerçekleştirilmiştir.
